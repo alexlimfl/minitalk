@@ -23,7 +23,7 @@ void	*ft_calloc(size_t	nmemb, size_t	size)
 	ptr = malloc(total_size);
 	if (!ptr)
 		return (0);
-	ft_bzero(ptr, total_size);
+	ft_bzero_libft(ptr, total_size);
 	return (ptr);
 }
 //nmemb = number of members

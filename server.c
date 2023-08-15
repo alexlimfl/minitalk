@@ -15,26 +15,43 @@
 #include <signal.h>
 #include <unistd.h>
 
-void sig_handler(int signum, siginfo_t * info, void *context)
+void	sig_handler(int signum, siginfo_t *info, void *context)
 {
-	int bit;
-	int i;
+	static int	i;
+	static char	c;
+	int			bit;
 
-	if (signum == SIGUSR1)
-		bit = 0;
-	else if (signum == SIGUSR2)
+	(void)context;
+	if (signum == SIGUSR2)
 		bit = 1;
-
-
-
-
+	else
+		bit = 0;
+	c <<= 1;
+	c += bit;
+	i++;
+	if (i == 8)
+	{
+		write(1, &c, 1);
+		if (c == '\0')
+		{
+			write(1, "\n", 1);
+			kill(info->si_pid, SIGUSR2);
+		}
+	}
+	i = 0;
+	c = 0;
 }
 
-int	main()
+int	main(void)
 {
-	sigaction	sa;
+	struct sigaction	sa;
 
 	ft_printf("Server PID: %d", getpid());
 	sa.sa_sigaction = sig_handler;
-
+	sa.sa_flags = SIGINFO;
+	sigaction(SIGUSR1, &sa, 0);
+	sigaction(SIGUSR2, &sa, 0);
+	while (1)
+		pause();
+	return (0);
 }

@@ -107,13 +107,12 @@ char	*ft_itoa(int n)
 		return (str);
 	}
 	len = length(n);
-	negative = n < 0
-	// if (n < 0)
-	// 	negative = 1;
-	// else
-	// 	negative = 0;
-	// str = stringmaker(n, len, negative);
-	return (stringmaker(n, len, negative));
+	if (n < 0)
+		negative = 1;
+	else
+		negative = 0;
+	str = stringmaker(n, len, negative);
+	return (str);
 }
 /*
 int main()

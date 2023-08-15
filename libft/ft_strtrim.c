@@ -52,14 +52,14 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (trimmed);
 }
 
-int main()
-{
-    char * s = ft_strtrim("   xxxtripouille   xxx", " xetri");
+// int main()
+// {
+//     char * s = ft_strtrim("   xxxtripouille   xxx", " xetri");
 
-    char * s1 = ft_strtrim("", "123");
+//     char * s1 = ft_strtrim("", "123");
 
-    printf("%s/\n",s);
-    printf("%s/\n",s1);
+//     printf("%s/\n",s);
+//     printf("%s/\n",s1);
 
-    return 0;
-}
+//     return 0;
+// }
