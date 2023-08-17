@@ -42,8 +42,11 @@ void	send_msg_to_server(pid_t server_pid, char *str)
 		i++;
 	}
 	i = 8;
-	while (--i != 0)
+	while (--i >= 0)
+	{
 		kill(server_pid, SIGUSR1);
+		usleep(420);
+	}
 }
 
 int	main(int argc, char **argv)

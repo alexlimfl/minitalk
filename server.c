@@ -37,18 +37,18 @@ void	sig_handler(int signum, siginfo_t *info, void *context)
 			write(1, "\n", 1);
 			kill(info->si_pid, SIGUSR2);
 		}
+		i = 0;
+		c = 0;
 	}
-	i = 0;
-	c = 0;
 }
 
 int	main(void)
 {
 	struct sigaction	sa;
 
-	ft_printf("Server PID: %d", getpid());
+	ft_printf("Server PID: %d\n", getpid());
 	sa.sa_sigaction = sig_handler;
-	sa.sa_flags = SIGINFO;
+	sa.sa_flags = SA_SIGINFO;
 	sigaction(SIGUSR1, &sa, 0);
 	sigaction(SIGUSR2, &sa, 0);
 	while (1)
